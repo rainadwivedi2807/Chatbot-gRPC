@@ -1,0 +1,16 @@
+# Binaries
+/server/main
+/client/main
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Dependencies
+vendor/
+
+# IDEs
+.vscode/
+.idea/
+.DS_Store

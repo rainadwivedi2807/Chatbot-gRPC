@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package chatbot;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/rainadwivedi/grpc-chatbot/protocol";
+
+enum MessageType {
+  TEXT = 0;
+  SYSTEM = 1; // Join/Leave
+}
+
+service ChatbotService {
+  rpc SendMessage(Message) returns (Response);
+  rpc Chat(stream Message) returns (stream Message);
+}
+
+message Message {
+  string sender_name = 1;
+  string content = 2;
+  google.protobuf.Timestamp sent_at = 3;
+  MessageType type = 4;
+}
+
+message Response {
+  bool success = 1;
+  string error_message = 2;
+  google.protobuf.Timestamp received_at = 3;
+}
